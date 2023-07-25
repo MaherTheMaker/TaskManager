@@ -1,0 +1,16 @@
+
+.blue{
+  color: blueviolet;
+}
+.task:not(.active){
+
+  background-color: antiquewhite;
+  border: 2px solid black;
+  margin-bottom: 5px;
+  cursor: pointer
+}
+
+.TaskActive{
+  background-color: pink;border: 2px solid red; margin-bottom: 5px;cursor: pointer
+}
+

@@ -3,7 +3,7 @@
     <form #f="ngForm" (ngSubmit)="onSubmitTask(f)" >
       <div class="form-group">
         <label for="title">Title:</label>
-        <input class="form-control" type="text" name="title"  required id="title" ngModel>
+          <input class="form-control" type="text" name="title"  required id="title" ngModel>
       </div>
 
 
@@ -18,7 +18,9 @@
         <input type="date" name="date" id="date" ngModel required class="form-control">
       </div>
 
-      <button type="submit" class="btn btn-primary form-control">Add new task </button>
+      <button type="submit" class="btn btn-primary form-control">
+        {{editMode?'Edit':'Add new task '}}
+      </button>
 
 
     </form>

@@ -7,30 +7,24 @@ import {Subject} from "rxjs";
 })
 export class TaskService {
 
-  changeTasks=new Subject<Task[]>();
+  changeTasksList=new Subject<Task[]>();
+  startEditing=new Subject<number>();
+
+
   myTasks:Task[]=[
-    new Task("t1","des1des1des1des1des1ds1des1des1des1des1des1des1des1des1des1des1des1des1des1des1des1des1des1",new Date()),
+    new Task("t1","des1ded s1des1des1des1des1des1des1de s1des1des1des1des1",new Date()),
     new Task("t2","des2",new Date()),
-    new Task("t1","des1des1des1des1des1ds1des1des1des1des1des1des1des1des1des1des1des1des1des1des1des1des1des1",new Date()),
-    new Task("t2","des2",new Date()),
-    new Task("t1","des1des1des1des1des1ds1des1des1des1des1des1des1des1des1des1des1des1des1des1des1des1des1des1",new Date()),
-    new Task("t2","des2",new Date()),
-    new Task("t1","des1des1des1des1des1ds1des1des1des1des1des1des1des1des1des1des1des1des1des1des1des1des1des1",new Date()),
-    new Task("t2","des2",new Date()),
-    new Task("t1","des1des1des1des1des1ds1des1des1des1des1des1des1des1des1des1des1des1des1des1des1des1des1des1",new Date()),
-    new Task("t2","des2",new Date()),
-    new Task("t1","des1des1des1des1des1ds1des1des1des1des1des1des1des1des1des1des1des1des1des1des1des1des1des1",new Date()),
-    new Task("t2","des2",new Date()),
-    new Task("t1","des1des1des1des1des1ds1des1des1des1des1des1des1des1des1des1des1des1des1des1des1des1des1des1",new Date()),
-    new Task("t2","des2",new Date()),
+
   ]
 
   constructor() {
-    this.changeTasks.next(this.myTasks);
+    this.changeTasksList.next(this.myTasks);
   }
 
-  addTask(title:string,description:string,dueDate:Date){
-    this.myTasks.push(new Task(title,description,dueDate));
+  addTask(task:Task){
+    this.myTasks.push(task  );
+    this.changeTasksList.next(this.getTasks());
+
   }
 
   getTasks(){
@@ -44,9 +38,13 @@ export class TaskService {
   updateTask(index:number , updatedTask:Task)
   {
     this.myTasks[index]=updatedTask;
+    this.changeTasksList.next(this.getTasks());
+
   }
 
   deleteTask(index:number){
     this.myTasks.splice(index,1);
+    this.changeTasksList.next(this.getTasks());
+
   }
 }
